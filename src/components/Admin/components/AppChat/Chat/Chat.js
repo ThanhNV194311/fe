@@ -7,7 +7,7 @@ import TypeMessage from "./TypeMessage";
 
 function Chat(props) {
 	let socket;
-	const ENDPOINT = "localhost:4000";
+	const ENDPOINT = "be-production-05ac.up.railway.app";
 	const [messages, setMessages] = useState([]);
 	const { userInfo } = useSelector(state => state.userSignin);
 	const idConversation = useSelector(state => state.chat.idConversation);
