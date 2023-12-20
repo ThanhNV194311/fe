@@ -5,7 +5,6 @@
 	"engines": {
 		"node": "14.17.6"
 	},
-
 	"dependencies": {
 		"@ant-design/icons": "^4.6.2",
 		"@ant-design/plots": "^1.2.5",
@@ -44,7 +43,7 @@
 		"web-vitals": "^1.1.2"
 	},
 	"scripts": {
-		"start": "react-scripts start",
+		"start": "webpack-dev-server --inline --content-base . --history-api-fallback",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
