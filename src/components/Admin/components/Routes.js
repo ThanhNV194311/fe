@@ -13,21 +13,20 @@ import DataFilterProduct from "./AdminProduct/DataFilterProduct/DataFilterProduc
 function Routes(props) {
 	return (
 		<Switch>
-			{/* Use #/admin instead of /admin */}
-			<Route path="#/admin" exact component={Dashboard} />
-			<Route path="#/admin/customer" component={AdminUser} />
+			<Route path="/admin/" exact component={Dashboard} />
+			<Route path="/admin/customer" component={AdminUser} />
 
-			<Route path="#/admin/product/create" component={AdminCreate} />
-			<Route path="#/admin/product/update/info" component={DataFilterProduct} />
-			<Route path="#/admin/product/update/:id" component={AdminUpdate} />
+			<Route path="/admin/product/create" component={AdminCreate} />
+			<Route path="/admin/product/update/info" component={DataFilterProduct} />
+			<Route path="/admin/product/update/:id" component={AdminUpdate} />
 			<Route
-				path="#/admin/product/reviewProduct/:id"
+				path="/admin/product/reviewProduct/:id"
 				component={ReviewProduct}
 			/>
-			<Route path="#/admin/product" component={AdminProduct} />
+			<Route path="/admin/product" component={AdminProduct} />
 
-			<Route path="#/admin/order" component={AdminOrder} />
-			<Route path="#/admin/chat" component={AppChat} />
+			<Route path="/admin/order" component={AdminOrder} />
+			<Route path="/admin/chat" component={AppChat} />
 		</Switch>
 	);
 }

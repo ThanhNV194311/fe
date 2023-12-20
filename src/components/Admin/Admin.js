@@ -1,10 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "./Admin.css";
-import { BrowserRouter as Router, Route, useHistory } from "react-router-dom";
+import { Router, Route, useHistory } from "react-router-dom";
+import { createHashHistory } from "history"; // Import createHashHistory
 
 import Sidebar from "./components/sidebar/Sidebar";
 import Routes from "./components/Routes";
+
+const hashHistory = createHashHistory(); // Create an instance of createHashHistory
 
 function Admin(props) {
 	const userSignin = useSelector(state => state.userSignin);
@@ -16,7 +19,7 @@ function Admin(props) {
 	}
 
 	return (
-		<Router>
+		<Router history={hashHistory}>
 			<Route
 				render={props => (
 					<div className={`layout`}>
