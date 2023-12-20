@@ -32,23 +32,23 @@ function App() {
 						<HomePage />
 					</Route>
 
-					<Route path="#/login" exact>
+					<Route path="/login" exact>
 						<LoginPage />
 					</Route>
 
-					<Route path="#/register" exact>
+					<Route path="/register" exact>
 						<SignupPage />
 					</Route>
 
-					<Route path="#/product" exact>
+					<Route path="/product" exact>
 						<ProductPage />
 					</Route>
 
-					<Route path="#/detail/:id" exact>
+					<Route path="/detail/:id" exact>
 						<DetailPage />
 					</Route>
 
-					<Route path="#/cart" exact>
+					<Route path="/cart" exact>
 						<CartPage />
 					</Route>
 
@@ -56,27 +56,27 @@ function App() {
 						<OrderPage />
 					</Route>
 
-					<Route path="#/orderSuccess" exact>
+					<Route path="/orderSuccess" exact>
 						<OrderSuccessPage />
 					</Route>
 
-					<Route path="#/payment" exact>
+					<Route path="/payment" exact>
 						<PaymentPage />
 					</Route>
 
-					<Route path="#/MyOrder" exact>
+					<Route path="/MyOrder" exact>
 						<MyOrderPage />
 					</Route>
 
-					<Route path="#/search" exact>
+					<Route path="/search" exact>
 						<SearchPage />
 					</Route>
 
-					<Route path="#/chat" exact>
+					<Route path="/chat" exact>
 						<ChatPage />
 					</Route>
 
-					<Route path="#/admin" exact>
+					<Route path="/admin" exact>
 						<AdminPage />
 					</Route>
 
