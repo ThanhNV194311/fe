@@ -6,79 +6,75 @@ import ListMessage from "./ListMessage";
 import TypeMessage from "./TypeMessage";
 
 function Chat(props) {
-  let socket;
-  const ENDPOINT = "localhost:4000";
-  const [messages, setMessages] = useState([]);
-  const { userInfo } = useSelector((state) => state.userSignin);
-  const idConversation = useSelector((state) => state.chat.idConversation);
-  const nameConversation = useSelector(state => state.chat.nameConversation)
+	let socket;
+	const ENDPOINT = "localhost:4000";
+	const [messages, setMessages] = useState([]);
+	const { userInfo } = useSelector(state => state.userSignin);
+	const idConversation = useSelector(state => state.chat.idConversation);
+	const nameConversation = useSelector(state => state.chat.nameConversation);
 
-  useEffect(() => {
-    if (!idConversation) return;
-    const getAllMessageByConversation = async () => {
-      const { data } = await axios.get(
-        `http://localhost:4000/chat/message?idConversation=${idConversation}`
-      );
-      setMessages(data.messageList);
-    };
+	useEffect(() => {
+		if (!idConversation) return;
+		const getAllMessageByConversation = async () => {
+			const { data } = await axios.get(
+				`https://be-production-05ac.up.railway.app/chat/message?idConversation=${idConversation}`
+			);
+			setMessages(data.messageList);
+		};
 
-    getAllMessageByConversation();
-  }, [idConversation]);
+		getAllMessageByConversation();
+	}, [idConversation]);
 
-  useEffect(() => {
-    socket = io(ENDPOINT);
+	useEffect(() => {
+		socket = io(ENDPOINT);
 
-    socket.emit("admin_join_conversation", idConversation);
+		socket.emit("admin_join_conversation", idConversation);
 
-    socket.on("newMessage", (message) => {
-      setMessages([...messages, message]);
-    });
+		socket.on("newMessage", message => {
+			setMessages([...messages, message]);
+		});
 
-    return () => socket.disconnect();
-  });
+		return () => socket.disconnect();
+	});
 
-  useEffect(() => {
-    const scrollMessage = () => {
-      var element = document.querySelector(".ad-chatuser-listmessage");
-      element.scrollTop = element.scrollHeight;
-    }
-    
-      scrollMessage()
+	useEffect(() => {
+		const scrollMessage = () => {
+			var element = document.querySelector(".ad-chatuser-listmessage");
+			element.scrollTop = element.scrollHeight;
+		};
 
-  })
+		scrollMessage();
+	});
 
-  const handleFormSubmit = async (message) => {
-    const sender = userInfo.name;
+	const handleFormSubmit = async message => {
+		const sender = userInfo.name;
 
-    const payload = {
-      sender,
-      message,
-      idConversation,
-    };
-    const { data } = await axios.post(
-      "http://localhost:4000/chat/save",
-      payload
-    );
-    socket.emit('chat', data);
-  };
-  return (
-   
-      <div className="ad-chatuser">
-        <div className="ad-chatuser-user">
-          <span className="ad-chatuser-user-name">{nameConversation}</span>
-        </div>
+		const payload = {
+			sender,
+			message,
+			idConversation,
+		};
+		const { data } = await axios.post(
+			"https://be-production-05ac.up.railway.app/chat/save",
+			payload
+		);
+		socket.emit("chat", data);
+	};
+	return (
+		<div className="ad-chatuser">
+			<div className="ad-chatuser-user">
+				<span className="ad-chatuser-user-name">{nameConversation}</span>
+			</div>
 
-        {messages ? (
-          <ListMessage messages={messages} user={userInfo}></ListMessage>
-        ) : (
-          ""
-        )}
+			{messages ? (
+				<ListMessage messages={messages} user={userInfo}></ListMessage>
+			) : (
+				""
+			)}
 
-        <TypeMessage onSubmit={handleFormSubmit}></TypeMessage>
-      </div>
-      
-   
-  );
+			<TypeMessage onSubmit={handleFormSubmit}></TypeMessage>
+		</div>
+	);
 }
 
 export default Chat;
