@@ -12,7 +12,7 @@ function Admin(props) {
 	const history = useHistory();
 
 	if (!userInfo || !userInfo.isAdmin) {
-		history.push("/admin");
+		history.push("/");
 	}
 
 	return (
