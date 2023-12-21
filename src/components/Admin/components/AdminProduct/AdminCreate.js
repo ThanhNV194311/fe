@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
-import { hashHistory } from "react-router";
 
 import {
 	editCurrentPage,
@@ -55,7 +54,7 @@ function AdminCreate(props) {
 
 		await dispatch(saveProduct(formData));
 		await dispatch(editCurrentPage(pages));
-		hashHistory.push("/admin/product");
+		history.push("#/admin/product");
 		getAllTypeProduct();
 		console.log(data);
 	};
